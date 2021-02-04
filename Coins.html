@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Valeur du bitcoin</title>
+    </head>
+    <body>
+        <p id="valeurUSD"></p>
+        <p id="valeurEUR"></p>
+        <p id="valeurGBP"></p>
+        <script>
+            var dollars = document.getElementById("valeurUSD");
+            var euro = document.getElementById("valeurEUR");
+            var livres = document.getElementById("valeurGBP");
+            var url="https://api.coindesk.com/v1/bpi/currentprice.json";
+            var xhr = new XMLHttpRequest();
+            var tractopelle;
+            xhr.open('GET', url);
+            xhr.responseType = "json";
+            xhr.onload = function() {
+                var result = xhr.response;
+                //console.log(xhr.response);
+                //console.log(result['bpi']['USD']);
+                //target.innerHTML = result["bpi"];
+                tractopelle = result['bpi']['USD']['rate'];
+                dollars.innerHTML = "Valeur du bitcoin en USD: " + tractopelle + " $"
+                tractopelle = result['bpi']['GBP']['rate'];
+                livres.innerHTML = "Valeur du bitcoin en livres: " + tractopelle + " £"
+                tractopelle = result['bpi']['EUR']['rate'];
+                euro.innerHTML = "Valeur du bitcoin en euros: " + tractopelle + " :inserez cigle euros ici mdr:"
+                
+            };
+            xhr.send(null);
+        </script>
+    </body>
+</html>
